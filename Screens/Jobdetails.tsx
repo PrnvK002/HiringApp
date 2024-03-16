@@ -1,10 +1,17 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 import Icon from "react-native-vector-icons/FontAwesome";
 import FeatureBox from "../Components/FeatureBox";
+import AboutTab from "../Components/AboutTab";
+import CompanyTab from "../Components/CompanyTab";
+import ReviewTab from "../Components/ReviewTab";
 
 export default function JobDetails() {
+  const [activeTab, setActivetab] = useState("about");
+
+  const changeTab = (tab: string) => setActivetab(tab);
+
   return (
     <View style={styles.detailBox}>
       <View style={styles.logoContainer}>
@@ -23,6 +30,35 @@ export default function JobDetails() {
         <FeatureBox />
         <FeatureBox />
         <FeatureBox />
+      </View>
+      <View style={styles.tabs}>
+        <Text
+          style={[styles.tab, activeTab === "about" ? styles.activeTab : {}]}
+          onPress={() => changeTab("about")}
+        >
+          About
+        </Text>
+        <Text
+          style={[styles.tab, activeTab === "company" ? styles.activeTab : {}]}
+          onPress={() => changeTab("company")}
+        >
+          Company
+        </Text>
+        <Text
+          style={[styles.tab, activeTab === "reviews" ? styles.activeTab : {}]}
+          onPress={() => changeTab("reviews")}
+        >
+          Review
+        </Text>
+      </View>
+      <View style={styles.tabContainer}>
+        {activeTab === "about" ? (
+          <AboutTab />
+        ) : activeTab === "company" ? (
+          <CompanyTab />
+        ) : (
+          <ReviewTab />
+        )}
       </View>
     </View>
   );
@@ -85,5 +121,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-around",
+  },
+  tabs: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    borderBottomColor: "#7a7876",
+    borderBottomWidth: 1,
+  },
+  tab: {
+    fontSize: 18,
+    color: "black",
+    marginTop: 12,
+    fontWeight: "500",
+  },
+  activeTab: {
+    borderBottomColor: "#0c4487",
+    borderBottomWidth: 3,
+    paddingBottom: 2,
+    color: "#4c4d4f",
+  },
+  tabContainer: {
+    padding: 15
   },
 });
