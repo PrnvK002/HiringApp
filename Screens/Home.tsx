@@ -46,7 +46,7 @@ const filters = [
   { name: "Web developer", id: 6 },
 ];
 
-export default function Home() {
+export default function Home({navigation}:any) {
   return (
     <SafeAreaView>
       <View style={styles.header}>
@@ -55,7 +55,7 @@ export default function Home() {
       </View>
       <ScrollView horizontal>
         {jobs.map((job, index) => {
-          return <JobBox key={index} {...job} />;
+          return <JobBox key={index} {...job} navigation={navigation}/>;
         })}
       </ScrollView>
       <View style={styles.header}>
@@ -69,7 +69,7 @@ export default function Home() {
       </ScrollView>
       <ScrollView horizontal style={{ marginTop: 10 }}>
         {jobs.map((job, index) => {
-          return <JobBox key={index} {...job} />;
+          return <JobBox key={index} {...job} navigation={navigation}/>;
         })}
       </ScrollView>
     </SafeAreaView>
