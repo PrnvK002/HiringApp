@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React from "react";
 
 import Icon from "react-native-vector-icons/FontAwesome";
+import FeatureBox from "../Components/FeatureBox";
 
 export default function JobDetails() {
   return (
@@ -16,6 +17,12 @@ export default function JobDetails() {
       <View style={styles.location}>
         <Icon name="map-pin" size={20} color="black" />
         <Text style={styles.locationText}>New York, USA</Text>
+      </View>
+      <View style={styles.features}>
+        <FeatureBox />
+        <FeatureBox />
+        <FeatureBox />
+        <FeatureBox />
       </View>
     </View>
   );
@@ -54,7 +61,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
     color: "black",
-    marginTop: 35
+    marginTop: 35,
   },
   companyName: {
     fontSize: 14,
@@ -72,5 +79,11 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     color: "#545a66",
     marginLeft: 4,
+  },
+  features: {
+    marginTop: 10,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
   },
 });
